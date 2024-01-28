@@ -45,6 +45,8 @@ topic_model = BERTopic(hdbscan_model=cluster_model)
 df['topic'], probabilities = topic_model.fit_transform(df['combined_text'], embeddings)
 keywords = topic_model.generate_topic_labels()
 df['cluster_keywords'] = df['topic'].map(lambda x: keywords[x])
+df.to_csv('dataframe1.csv', index=False)
+
 print(df)
 def interactive_clusters_scatterplot(
         df: pd.DataFrame,
@@ -111,5 +113,5 @@ chart = interactive_clusters_scatterplot(df,
                                             fields_in_tooltip=fields_in_tooltip,
                                             title=title + " - " + str(n_clusters) + " clusters",
                                             title_column=title_column)
-chart.save("chart2.html")
+chart.save("chart3.html")
 
